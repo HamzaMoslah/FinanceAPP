@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/monnaie"
+        android:layout_column="1"
+        android:layout_marginRight="@dimen/change"/>
+
+    <TextView
+        android:id="@+id/unit"
+        android:layout_column="2"
+        android:layout_marginRight="@dimen/change"/>
+
+    <TextView
+        android:id="@+id/achat"
+        android:layout_column="3"
+        android:layout_marginRight="@dimen/change"/>
+
+    <TextView
+        android:id="@+id/vente"
+        android:layout_column="4" />
+</TableRow>
