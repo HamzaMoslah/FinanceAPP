@@ -56,9 +56,9 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/ouv"
                     android:layout_height="wrap_content"
-                    android:text="From" />
+                    android:text="De" />
 
                 <Spinner
                     android:id="@+id/from"
@@ -73,9 +73,9 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/ouv"
                     android:layout_height="wrap_content"
-                    android:text="To" />
+                    android:text="A" />
 
                 <Spinner
                     android:id="@+id/to"
@@ -86,9 +86,11 @@
 
             <Button
                 android:id="@+id/btConvert"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimaryDark"
                 android:layout_height="wrap_content"
-                android:text="Convert" />
+                android:text="Convertir" />
 
             <TableLayout
                 android:id="@+id/coursTable"

@@ -2,8 +2,10 @@ package com.example.moslah_hamza.retrofitdemo;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -39,6 +41,7 @@ import java.util.Arrays;
 import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private GoogleApiClient client;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
 
-        mProgressDialog = ProgressDialog.show(this, "", "Wait", true);
+        mProgressDialog = ProgressDialog.show(this, "", "Chargement", true);
         cur = (EditText) findViewById(R.id.cur);
         convert = (Button) findViewById(R.id.btConvert);
         from = (Spinner) findViewById(R.id.from);
@@ -152,29 +156,34 @@ public class MainActivity extends AppCompatActivity {
 
         List<Currency> currencies1 = new ArrayList<>();
         List<String> currencies = new ArrayList<>();
+        List<String> currencyNames = new ArrayList<>();
+        final HashMap<String, String> curCodeNames = new HashMap<String, String>();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             currencies1.addAll(Currency.getAvailableCurrencies());
         }
         for (Currency currency : currencies1) {
             currencies.add(currency.getCurrencyCode());
+            currencyNames.add(currency.getDisplayName());
+            curCodeNames.put(currency.getDisplayName(), currency.getCurrencyCode());
         }
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currencies);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currencyNames);
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // attaching data adapter to spinner
         from.setAdapter(dataAdapter);
-        from.setSelection(currencies.indexOf("EUR"));
+        from.setSelection(currencyNames.indexOf("Euro"));
         to.setAdapter(dataAdapter);
-        to.setSelection(currencies.indexOf("TND"));
+        to.setSelection(currencyNames.indexOf("Tunisian Dinar"));
 
         convert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String mount = cur.getText().toString();
-                String fromTxt = from.getSelectedItem().toString();
-                String toTxt = to.getSelectedItem().toString();
+                String fromTxt = curCodeNames.get(from.getSelectedItem().toString());
+                String toTxt = curCodeNames.get(to.getSelectedItem().toString());
                 try {
                     convertCurrency(mount, fromTxt, toTxt);
                 } catch (JSONException e) {
@@ -190,15 +199,19 @@ public class MainActivity extends AppCompatActivity {
         //Filling in cells
         tv = (TextView) tableRow.findViewById(R.id.monnaie);
         tv.setText("Monnaie");
+        tv.setTextColor(Color.parseColor("#000000"));
 
         tv = (TextView) tableRow.findViewById(R.id.unit);
         tv.setText("Unité");
+        tv.setTextColor(Color.parseColor("#000000"));
 
         tv = (TextView) tableRow.findViewById(R.id.achat);
         tv.setText("Achat");
+        tv.setTextColor(Color.parseColor("#000000"));
 
         tv = (TextView) tableRow.findViewById(R.id.vente);
         tv.setText("Vente");
+        tv.setTextColor(Color.parseColor("#000000"));
 
         tab.addView(tableRow);
 

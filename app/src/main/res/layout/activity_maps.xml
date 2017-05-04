@@ -52,13 +52,19 @@
                     android:id="@+id/btnBanks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Banques" />
+                    android:layout_marginRight="@dimen/change"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="Banques"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/btnBrokers"
+                    android:layout_marginLeft="@dimen/change"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Brokers" />
+                    android:background="@color/colorPrimaryDark"
+                    android:text="Brokers"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
         </FrameLayout>

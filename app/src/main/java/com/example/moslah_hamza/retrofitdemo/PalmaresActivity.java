@@ -2,6 +2,7 @@ package com.example.moslah_hamza.retrofitdemo;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,6 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 /**
  * Created by Moslah_Hamza on 04/05/2017.
  */
@@ -116,7 +118,7 @@ public class PalmaresActivity extends AppCompatActivity {
         //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
 
-        mProgressDialog = ProgressDialog.show(this, "", "Wait", true);
+        mProgressDialog = ProgressDialog.show(this, "", "Chargement", true);
         tab = (TableLayout) findViewById(R.id.coursTable);
 
         TableRow tableRow = (TableRow) getLayoutInflater().inflate(R.layout.table_palmares, null);
@@ -125,16 +127,22 @@ public class PalmaresActivity extends AppCompatActivity {
         //Filling in cells
         tv = (TextView) tableRow.findViewById(R.id.nom);
         tv.setText("Nom");
+        tv.setTextColor(Color.parseColor("#000000"));
         tv = (TextView) tableRow.findViewById(R.id.haut);
         tv.setText("Haut");
+        tv.setTextColor(Color.parseColor("#000000"));
         tv = (TextView) tableRow.findViewById(R.id.bas);
         tv.setText("Bas");
+        tv.setTextColor(Color.parseColor("#000000"));
         tv = (TextView) tableRow.findViewById(R.id.dernier);
         tv.setText("Dernier");
+        tv.setTextColor(Color.parseColor("#000000"));
         tv = (TextView) tableRow.findViewById(R.id.vol);
         tv.setText("Volume");
+        tv.setTextColor(Color.parseColor("#000000"));
         tv = (TextView) tableRow.findViewById(R.id.variation);
         tv.setText("Variation");
+        tv.setTextColor(Color.parseColor("#000000"));
         tab.addView(tableRow);
 
         //showList();
@@ -183,6 +191,11 @@ public class PalmaresActivity extends AppCompatActivity {
             tv1.setText(indice.getVolume());
             tv1 = (TextView) tableRow1.findViewById(R.id.variation);
             tv1.setText(indice.getVariation());
+            if (indice.getVariation().contains("-")) {
+                tv1.setTextColor(Color.parseColor("#FC0000"));
+            } else {
+                tv1.setTextColor(Color.parseColor("#009C00"));
+            }
 
             tab.addView(tableRow1);
         }
