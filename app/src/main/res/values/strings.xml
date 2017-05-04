@@ -2,4 +2,5 @@
     <string name="app_name">Stock Exchange</string>
     <string name="openDrawer">Open</string>
     <string name="closeDrawer">Close</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

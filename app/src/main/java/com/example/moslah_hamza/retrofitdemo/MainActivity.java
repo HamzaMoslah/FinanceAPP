@@ -90,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
 
                     case R.id.nav_bank:
+                        i = new Intent(getApplicationContext(), MapsActivity.class);
+                        startActivity(i);
 
                         return true;
 
