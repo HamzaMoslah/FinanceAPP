@@ -15,6 +15,12 @@ import retrofit2.http.POST;
 
 public interface RequestInterface {
 
+    @GET("dom-index.php")
+    Call<JSONResponseIndex> getJSONIndex();
+
+    @GET("dom-palmares.php")
+    Call<JSONResponsePalmares> getJSONPalmares();
+
     @GET("dom-parsing-court.php")
     Call<JSONResponse> getJSON();
 

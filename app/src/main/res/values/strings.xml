@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">RetrofitDemo</string>
+    <string name="app_name">Stock Exchange</string>
+    <string name="openDrawer">Open</string>
+    <string name="closeDrawer">Close</string>
 </resources>
